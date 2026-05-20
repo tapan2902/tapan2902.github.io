@@ -532,16 +532,59 @@
 </header>
 
 <div class="section-head" id="work">
-  <div class="eyebrow">Selected work · 01—16</div>
+  <div class="eyebrow">Selected work · 01—18</div>
   <h2>Projects, in order of depth.</h2>
 </div>
 
 <main class="projects">
 
-  <!-- 01 Tunnel SLAM -->
-  <article class="project">
+  <!-- 01 RL Traffic Signal Control -->
+  <article class="project reverse">
     <div class="project-text">
       <div class="project-num">01 / Research</div>
+      <h3 class="project-title">Adaptive Traffic Signal Control via RL</h3>
+      <div class="project-meta">
+        <span>Northeastern University</span>
+        <span>CS 5180 · Prof. Robert Platt</span>
+        <span>SUMO-RL · Python</span>
+      </div>
+      <p class="project-desc">
+        Trained six RL agents — DQN, Double DQN, Linear SARSA, Linear Q-Learning,
+        MCTS, and an SB3 baseline — on a simulated intersection in SUMO-RL, each
+        benchmarked across five random seeds and 100,000 simulation seconds. The core
+        idea: weight one bus at 40 passenger-equivalents and let a single parameter
+        β control how aggressively the agent prioritizes transit over car throughput.
+        Biggest finding: three hyperparameter changes produced a 4× improvement over
+        naive DQN with no algorithm change at all. A well-configured Linear SARSA —
+        a 1970s algorithm — beat the first deep RL agent outright: 675s vs 2,197s
+        average wait. The reward signal was the bottleneck, not the model.
+      </p>
+      <div class="project-stats">
+        <div class="pstat">
+          <span class="num">4×</span>
+          <span class="label">Gain from hyperparameter tuning alone</span>
+        </div>
+        <div class="pstat">
+          <span class="num">94%</span>
+          <span class="label">Throughput at β = 2.0 sweet spot</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">Reinforcement Learning</span><span class="tag">SUMO-RL</span>
+        <span class="tag">DQN</span><span class="tag">Reward Design</span>
+        <span class="tag">Transit Priority</span><span class="tag">Python</span>
+        <a href="https://github.com/GaurangGhadi/Bus_Priority_Traffic_RL/tree/main" class="tag" style="color:var(--accent);border-color:var(--accent);text-decoration:none;" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="project-imgs single">
+      <figure><img src="images/RL_project.jpg" alt="RL traffic signal control research poster" loading="lazy"><figcaption>Adaptive Traffic Signal Control — Research Poster</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 02 Tunnel SLAM -->
+  <article class="project">
+    <div class="project-text">
+      <div class="project-num">02 / Research</div>
       <h3 class="project-title">Underground Tunnel 3D Mapping</h3>
       <div class="project-meta">
         <span>Northeastern University</span>
@@ -582,7 +625,7 @@
   <!-- 02 ROS2 SLAM Robot -->
   <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">02 / Research</div>
+      <div class="project-num">03 / Research</div>
       <h3 class="project-title">ROS2 SLAM Testing Platform</h3>
       <div class="project-meta">
         <span>Personal project</span>
@@ -611,7 +654,7 @@
   <!-- 03 Combat Robot -->
   <article class="project">
     <div class="project-text">
-      <div class="project-num">03 / Competition</div>
+      <div class="project-num">04 / Competition</div>
       <h3 class="project-title">Plastic Antweight Combat Robot</h3>
       <div class="project-meta">
         <span>NU Robotics</span>
@@ -649,7 +692,7 @@
   <!-- 04 ABU ROBOCON -->
   <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">04 / Team lead</div>
+      <div class="project-num">05 / Team lead</div>
       <h3 class="project-title">ABU ROBOCON</h3>
       <div class="project-meta">
         <span>Rajarshi Shahu College of Engineering</span>
@@ -688,7 +731,7 @@
   <!-- 05 IoT Vehicle Tracking -->
   <article class="project">
     <div class="project-text">
-      <div class="project-num">05 / IoT</div>
+      <div class="project-num">06 / IoT</div>
       <h3 class="project-title">IoT Vehicle Tracking System</h3>
       <div class="project-meta">
         <span>Rajarshi Shahu College</span>
@@ -722,7 +765,7 @@
   <!-- 06 Motor Driven Roller -->
   <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">06 / Startup</div>
+      <div class="project-num">07 / Startup</div>
       <h3 class="project-title">Motor Driven Roller <span style="color: var(--ink-faint); font-size: 0.7em;">(MDR)</span></h3>
       <div class="project-meta">
         <span>RollNDrive Pvt Ltd · Co-founder</span>
@@ -760,7 +803,7 @@
   <!-- 07 Mecanum Sorter -->
   <article class="project">
     <div class="project-text">
-      <div class="project-num">07 / Industrial</div>
+      <div class="project-num">08 / Industrial</div>
       <h3 class="project-title">Mecanum Wheel Parcel Sorter</h3>
       <div class="project-meta">
         <span>RollNDrive</span>
@@ -797,7 +840,7 @@
   <!-- 08 BLDC Motor Controller -->
   <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">08 / Hardware</div>
+      <div class="project-num">09 / Hardware</div>
       <h3 class="project-title">Closed-Loop BLDC Motor Controller</h3>
       <div class="project-meta">
         <span>RollNDrive · Custom PCB</span>
@@ -826,7 +869,7 @@
   <!-- 09 All-in-One Motherboard -->
   <article class="project">
     <div class="project-text">
-      <div class="project-num">09 / Hardware</div>
+      <div class="project-num">10 / Hardware</div>
       <h3 class="project-title">All-in-One Robotics Motherboard</h3>
       <div class="project-meta">
         <span>Robot Sumo · Robot Soccer</span>
@@ -856,7 +899,7 @@
   <!-- 10 High-Power Motor Controller -->
   <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">10 / Hardware</div>
+      <div class="project-num">11 / Hardware</div>
       <h3 class="project-title">High-Power Brushed DC Motor Controller</h3>
       <div class="project-meta">
         <span>Custom PCB</span>
@@ -884,7 +927,7 @@
   <!-- 11 Wire Cutting Machine -->
   <article class="project">
     <div class="project-text">
-      <div class="project-num">11 / Industrial</div>
+      <div class="project-num">12 / Industrial</div>
       <h3 class="project-title">Automatic Wire Cutting Machine</h3>
       <div class="project-meta">
         <span>ATmega-based controller</span>
@@ -911,7 +954,7 @@
   <!-- 12 Milk Dairy Display -->
   <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">12 / Industrial</div>
+      <div class="project-num">13 / Industrial</div>
       <h3 class="project-title">Milk Dairy Display System</h3>
       <div class="project-meta">
         <span>RS232 multi-machine</span>
@@ -938,7 +981,7 @@
   <!-- 13 Stair Climbing Robot -->
   <article class="project">
     <div class="project-text">
-      <div class="project-num">13 / Mechanical</div>
+      <div class="project-num">14 / Mechanical</div>
       <h3 class="project-title">Stair Climbing Robot</h3>
       <div class="project-meta">
         <span>Mechanical prototype</span>
@@ -963,7 +1006,7 @@
   <!-- 14 Self-Balancing Robot -->
   <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">14 / Controls</div>
+      <div class="project-num">15 / Controls</div>
       <h3 class="project-title">Self-Balancing Robot</h3>
       <div class="project-meta">
         <span>IMU · Stepper motors</span>
@@ -989,7 +1032,7 @@
   <!-- 15 FPV Drone -->
   <article class="project">
     <div class="project-text">
-      <div class="project-num">15 / Competition</div>
+      <div class="project-num">16 / Competition</div>
       <h3 class="project-title">FPV Drone — IIT Bombay Competition</h3>
       <div class="project-meta">
         <span>IIT Bombay Drone Competition</span>
@@ -1021,7 +1064,7 @@
   <!-- 16 Hand Sanitizer Machine -->
   <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">16 / Entrepreneurship</div>
+      <div class="project-num">17 / Entrepreneurship</div>
       <h3 class="project-title">Automated Hand Sanitizer Machine</h3>
       <div class="project-meta">
         <span>COVID-19 response</span>
@@ -1060,7 +1103,7 @@
   <!-- 17 Onion Harvester -->
   <article class="project">
     <div class="project-text">
-      <div class="project-num">17 / Agritech</div>
+      <div class="project-num">18 / Agritech</div>
       <h3 class="project-title">Self-Propelled Onion Harvester</h3>
       <div class="project-meta">
         <span>Team project · Electronics lead</span>
