@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio — Robotics & Mechatronics Engineering</title>
+<meta name="description" content="A portfolio of robotics, mechatronics, and embedded systems projects: SLAM, custom motor controllers, combat robots, drones, and industrial automation." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --bg-deep: #ebe6dc;
+    --ink: #1a1814;
+    --ink-soft: #4a4640;
+    --ink-faint: #8a857c;
+    --accent: #c2410c;
+    --accent-deep: #8a2c08;
+    --rule: #d9d3c5;
+    --paper: #fbf9f4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* paper grain texture */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.025) 1px, transparent 0);
+    background-size: 3px 3px;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    background: rgba(244, 241, 234, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+  nav .brand {
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  nav .links a {
+    color: var(--ink-soft);
+    margin-left: 1.5rem;
+  }
+  nav .links a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  @media (max-width: 640px) {
+    nav { padding: 0.75rem 1.25rem; }
+    nav .links a { margin-left: 1rem; font-size: 0.7rem; }
+  }
+
+  /* ============ HERO ============ */
+  header.hero {
+    min-height: 100vh;
+    padding: 8rem 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.6rem 0;
+    margin-bottom: 4rem;
+  }
+
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2.8rem, 8.5vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 50;
+    max-width: 14ch;
+    margin-bottom: 2rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  }
+
+  .hero-sub {
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    max-width: 60ch;
+    color: var(--ink-soft);
+    margin-bottom: 3rem;
+  }
+
+  .hero-footer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+  .hero-stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1;
+    display: block;
+  }
+  .hero-stat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    margin-top: 0.4rem;
+    display: block;
+  }
+
+  /* ============ SECTION HEADER ============ */
+  .section-head {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 6rem 2rem 3rem;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+    z-index: 2;
+  }
+  .section-head .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  /* ============ PROJECTS ============ */
+  .projects {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .project {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  @media (min-width: 900px) {
+    .project { grid-template-columns: 1fr 1.3fr; gap: 4rem; }
+    .project.reverse { grid-template-columns: 1.3fr 1fr; }
+    .project.reverse .project-text { order: 2; }
+  }
+
+  .project-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .project-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+
+  .project-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+  .project-meta span::before {
+    content: "◆";
+    color: var(--accent);
+    margin-right: 0.5rem;
+    font-size: 0.6rem;
+    vertical-align: middle;
+  }
+
+  .project-desc {
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--rule);
+  }
+  .pstat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+  }
+  .pstat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    margin-top: 0.3rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    color: var(--ink-soft);
+  }
+
+  /* image layouts */
+  .project-imgs {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .project-imgs.single { grid-template-columns: 1fr; }
+  .project-imgs.duo { grid-template-columns: 1fr 1fr; }
+  .project-imgs.triple {
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .project-imgs.triple .img-a { grid-row: 1 / 3; }
+  .project-imgs.quad {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .project-imgs figure {
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+    border-radius: 2px;
+    aspect-ratio: 4/3;
+  }
+  .project-imgs.single figure { aspect-ratio: 16/10; }
+  .project-imgs figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    filter: saturate(1.05);
+  }
+  .project-imgs figure:hover img { transform: scale(1.04); }
+
+  .project-imgs figcaption {
+    position: absolute;
+    bottom: 0; left: 0;
+    background: rgba(26, 24, 20, 0.85);
+    color: var(--bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .project-imgs figure:hover figcaption { opacity: 1; }
+
+  /* ============ SKILLS / ABOUT ============ */
+  .about {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  @media (min-width: 900px) {
+    .about { grid-template-columns: 1fr 2fr; gap: 5rem; }
+  }
+  .about h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+  .about p { color: var(--ink-soft); margin-bottom: 1rem; }
+
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .skill-group h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .skill-group ul { list-style: none; }
+  .skill-group li {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    padding: 0.2rem 0;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 4rem 2rem 2rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 2;
+  }
+  footer .inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  footer h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 18ch;
+    margin-bottom: 2rem;
+  }
+  footer h3 em { color: #f5a572; font-style: italic; }
+  footer .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  footer .contact-grid .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-faint);
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+  footer .contact-grid a, footer .contact-grid span {
+    color: var(--bg);
+    font-size: 1rem;
+  }
+  footer .colophon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* ============ ANIMATIONS ============ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards;
+  }
+  .fade-in.d1 { animation-delay: 0.1s; }
+  .fade-in.d2 { animation-delay: 0.25s; }
+  .fade-in.d3 { animation-delay: 0.4s; }
+  .fade-in.d4 { animation-delay: 0.55s; }
+  .fade-in.d5 { animation-delay: 0.7s; }
+
+  .project {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .project.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* selection */
+  ::selection { background: var(--accent); color: var(--bg); }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="brand">Robotics&nbsp;·&nbsp;Mechatronics&nbsp;·&nbsp;Embedded</span>
+  <span class="links">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </span>
+</nav>
+
+<header class="hero">
+  <div>
+    <div class="hero-meta fade-in">
+      <span>Portfolio / Vol. 01</span>
+      <span>16 Projects</span>
+      <span>2019 — 2026</span>
+    </div>
+
+    <h1 class="hero-title fade-in d1">
+      Building <em>machines</em><br />
+      that map, move,<br />
+      and matter.
+    </h1>
+
+    <p class="hero-sub fade-in d2">
+      A working catalogue of robotics, mechatronics, and embedded systems —
+      from SLAM in GPS-denied tunnels to custom motor controllers,
+      combat robots, and industrial conveyor systems. Most of these were built
+      end-to-end: mechanical design, custom PCBs, firmware, and the software stack on top.
+    </p>
+  </div>
+
+  <div class="hero-footer fade-in d3">
+    <div class="hero-stat">
+      <span class="num">16</span>
+      <span class="label">Projects delivered</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">95%</span>
+      <span class="label">SLAM localization accuracy</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">40%</span>
+      <span class="label">Conveyor cost reduction</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">100+</span>
+      <span class="label">Units commercially sold</span>
+    </div>
+  </div>
+</header>
+
+<div class="section-head" id="work">
+  <div class="eyebrow">Selected work · 01—16</div>
+  <h2>Projects, in order of depth.</h2>
+</div>
+
+<main class="projects">
+
+  <!-- 01 Tunnel SLAM -->
+  <article class="project">
+    <div class="project-text">
+      <div class="project-num">01 / Research</div>
+      <h3 class="project-title">Underground Tunnel 3D Mapping</h3>
+      <div class="project-meta">
+        <span>Northeastern University</span>
+        <span>RTAB-Map SLAM</span>
+        <span>ZED Mini · IMU</span>
+      </div>
+      <p class="project-desc">
+        Built a 3D mapping system for Northeastern's 16,000-foot underground
+        tunnel network — a GPS-denied environment with repetitive geometry,
+        the kind of place that breaks most visual SLAM stacks. Combined RTAB-Map's
+        loop-closure detection and memory management with a ZED Mini stereo
+        camera and IMU, fusing the streams to hold accurate pose over long
+        loops and generate high-resolution point clouds of the entire network.
+      </p>
+      <div class="project-stats">
+        <div class="pstat">
+          <span class="num">16,000<small>ft</small></span>
+          <span class="label">Tunnel network mapped</span>
+        </div>
+        <div class="pstat">
+          <span class="num">95%</span>
+          <span class="label">Localization accuracy</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">RTAB-Map</span><span class="tag">ROS</span>
+        <span class="tag">Stereo Vision</span><span class="tag">Sensor Fusion</span>
+        <span class="tag">Point Clouds</span>
+      </div>
+    </div>
+    <div class="project-imgs triple">
+      <figure class="img-a"><img src="images/tunnel.jpg" alt="Tunnel point cloud reconstruction" loading="lazy"><figcaption>Reconstructed tunnel topology</figcaption></figure>
+      <figure><img src="images/tunnel-2.jpg" alt="RViz visualization of SLAM" loading="lazy"><figcaption>Live RViz SLAM view</figcaption></figure>
+      <figure><img src="images/tunnel-3.jpg" alt="3D mesh of mapped tunnel" loading="lazy"><figcaption>3D mesh output</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 02 ROS2 SLAM Robot -->
+  <article class="project reverse">
+    <div class="project-text">
+      <div class="project-num">02 / In progress</div>
+      <h3 class="project-title">ROS2 SLAM Testing Platform</h3>
+      <div class="project-meta">
+        <span>Personal project</span>
+        <span>ROS2</span>
+        <span>Multi-sensor</span>
+      </div>
+      <p class="project-desc">
+        A robotics platform purpose-built to benchmark SLAM algorithms against
+        each other on identical hardware. The chassis carries LIDAR, IMU,
+        wheel encoders, stereo cameras, and ultrasonics, so any algorithm under
+        test sees the same ground truth. CAN bus ties the microcontroller to
+        the ROS2 stack — a single, deterministic transport for both real-time
+        motor control and sensor telemetry.
+      </p>
+      <div class="tags">
+        <span class="tag">ROS2</span><span class="tag">LIDAR</span>
+        <span class="tag">CAN Bus</span><span class="tag">Multi-sensor</span>
+        <span class="tag">Stereo</span>
+      </div>
+    </div>
+    <div class="project-imgs single">
+      <figure><img src="images/ros2-slam.jpg" alt="ROS2 SLAM robot CAD render" loading="lazy"><figcaption>Sensor stack on the testing platform</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 03 Combat Robot -->
+  <article class="project">
+    <div class="project-text">
+      <div class="project-num">03 / Competition</div>
+      <h3 class="project-title">Plastic Antweight Combat Robot</h3>
+      <div class="project-meta">
+        <span>NU Robotics</span>
+        <span>3D-printed chassis</span>
+        <span>Competition build</span>
+      </div>
+      <p class="project-desc">
+        A plastic antweight combat robot designed and built for Northeastern's
+        Plastic Ant League. Constraints drove every decision: weight limits,
+        a low center of gravity for stability under hits, and modular parts
+        so subsystems could be swapped between matches. The whole chassis is
+        3D-printed with structural geometry tuned for impact survival.
+      </p>
+      <div class="project-stats">
+        <div class="pstat">
+          <span class="num">Top 5</span>
+          <span class="label">NU Robotics — 13 robots</span>
+        </div>
+        <div class="pstat">
+          <span class="num">QF</span>
+          <span class="label">Mass Destruction 4 — 17 entries</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">3D Printing</span><span class="tag">Combat Robotics</span>
+        <span class="tag">Mechanical Design</span>
+      </div>
+    </div>
+    <div class="project-imgs duo">
+      <figure><img src="images/combat-1.jpg" alt="Green combat robot V1" loading="lazy"><figcaption>V1 — printed chassis</figcaption></figure>
+      <figure><img src="images/combat-2.jpg" alt="Red combat robot V2" loading="lazy"><figcaption>V2 — Mass Destruction build</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 04 ABU ROBOCON -->
+  <article class="project reverse">
+    <div class="project-text">
+      <div class="project-num">04 / Team lead</div>
+      <h3 class="project-title">ABU ROBOCON</h3>
+      <div class="project-meta">
+        <span>Rajarshi Shahu College of Engineering</span>
+        <span>International competition</span>
+      </div>
+      <p class="project-desc">
+        Built and competed with the ABU ROBOCON team — designing and
+        manufacturing robots for the international competition alongside
+        students from mechanical, electronics, and CS backgrounds. I owned
+        several subsystems and later mentored the sophomore and junior teams.
+        Under that mentorship the teams placed in the top 10 multiple times
+        and earned a Best Design Award.
+      </p>
+      <div class="project-stats">
+        <div class="pstat">
+          <span class="num">Top 10</span>
+          <span class="label">Multiple competition finishes</span>
+        </div>
+        <div class="pstat">
+          <span class="num">Best Design</span>
+          <span class="label">Award — mentored team</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">Robot Design</span><span class="tag">Manufacturing</span>
+        <span class="tag">Team Leadership</span><span class="tag">Mentorship</span>
+      </div>
+    </div>
+    <div class="project-imgs single">
+      <figure style="aspect-ratio: 16/10; background: linear-gradient(135deg, #2a261f 0%, #1a1814 100%); display:flex; align-items:center; justify-content:center; color: var(--ink-faint); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em;">
+        Competition imagery — archive
+      </figure>
+    </div>
+  </article>
+
+  <!-- 05 IoT Vehicle Tracking -->
+  <article class="project">
+    <div class="project-text">
+      <div class="project-num">05 / IoT</div>
+      <h3 class="project-title">IoT Vehicle Tracking System</h3>
+      <div class="project-meta">
+        <span>Rajarshi Shahu College</span>
+        <span>ESP32 · GSM · GPS</span>
+      </div>
+      <p class="project-desc">
+        A GPS/GSM vehicle tracking system built around a custom ESP32 controller
+        board. Instead of bolting on new sensors, I interfaced what was already
+        present on the vehicle — cutting external component count and trimming
+        response time. Paired with an Android app that pulls live coordinates,
+        speed, and direction off the GSM channel.
+      </p>
+      <div class="project-stats">
+        <div class="pstat">
+          <span class="num">10%</span>
+          <span class="label">Response time reduction</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">ESP32</span><span class="tag">GSM</span>
+        <span class="tag">GPS</span><span class="tag">Android</span>
+        <span class="tag">PCB Design</span>
+      </div>
+    </div>
+    <div class="project-imgs duo">
+      <figure><img src="images/iot-board.jpg" alt="ESP32 controller board" loading="lazy"><figcaption>Custom ESP32 controller</figcaption></figure>
+      <figure><img src="images/iot-app.jpg" alt="Companion Android app" loading="lazy"><figcaption>Companion Android app</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 06 Motor Driven Roller -->
+  <article class="project reverse">
+    <div class="project-text">
+      <div class="project-num">06 / Startup</div>
+      <h3 class="project-title">Motor Driven Roller <span style="color: var(--ink-faint); font-size: 0.7em;">(MDR)</span></h3>
+      <div class="project-meta">
+        <span>RollNDrive Pvt Ltd · Co-founder</span>
+        <span>Conveyor systems</span>
+      </div>
+      <p class="project-desc">
+        At RollNDrive — a company I co-founded — I designed a Motor Driven Roller
+        integrating a custom planetary gearbox with a closed-loop brushless DC
+        motor. The MDR became the building block of a modular conveyor system
+        tailored for AGVs and AMRs, scaling cleanly while cutting energy use
+        and downtime. I also designed and went to market with a custom motor
+        controller and worked directly with customers on integration.
+      </p>
+      <div class="project-stats">
+        <div class="pstat">
+          <span class="num">40%</span>
+          <span class="label">Conveyor cost reduction</span>
+        </div>
+        <div class="pstat">
+          <span class="num">Modular</span>
+          <span class="label">AGV/AMR integration</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">BLDC</span><span class="tag">Planetary Gearbox</span>
+        <span class="tag">Closed-loop Control</span><span class="tag">Industrial Design</span>
+      </div>
+    </div>
+    <div class="project-imgs duo">
+      <figure><img src="images/mdr-1.jpg" alt="Motor Driven Roller assembly" loading="lazy"><figcaption>MDR — gearbox + BLDC</figcaption></figure>
+      <figure><img src="images/mdr-2.jpg" alt="MDR in conveyor application" loading="lazy"><figcaption>Conveyor integration</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 07 Mecanum Sorter -->
+  <article class="project">
+    <div class="project-text">
+      <div class="project-num">07 / Industrial</div>
+      <h3 class="project-title">Mecanum Wheel Parcel Sorter</h3>
+      <div class="project-meta">
+        <span>RollNDrive</span>
+        <span>Conveyor integration</span>
+      </div>
+      <p class="project-desc">
+        A sorting module that routes parcels from a single input conveyor to
+        any of three outputs using the omni-directional motion of mecanum wheels.
+        The control system reads sorting logic in real time and steers each
+        package laterally, no diverters or pushers needed — and it drops into
+        a modular conveyor network without rebuilding the line.
+      </p>
+      <div class="project-stats">
+        <div class="pstat">
+          <span class="num">~2,600</span>
+          <span class="label">Boxes / hour throughput</span>
+        </div>
+        <div class="pstat">
+          <span class="num">3-way</span>
+          <span class="label">Routing from one input</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">Mecanum Wheels</span><span class="tag">Material Handling</span>
+        <span class="tag">Control Systems</span>
+      </div>
+    </div>
+    <div class="project-imgs duo">
+      <figure><img src="images/sorter-1.jpg" alt="Mecanum sorter top view" loading="lazy"><figcaption>Mecanum routing surface</figcaption></figure>
+      <figure><img src="images/sorter-2.jpg" alt="Sorter integrated in conveyor line" loading="lazy"><figcaption>Live in conveyor line</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 08 BLDC Motor Controller -->
+  <article class="project reverse">
+    <div class="project-text">
+      <div class="project-num">08 / Hardware</div>
+      <h3 class="project-title">Closed-Loop BLDC Motor Controller</h3>
+      <div class="project-meta">
+        <span>RollNDrive · Custom PCB</span>
+        <span>For MDR product line</span>
+      </div>
+      <p class="project-desc">
+        A custom closed-loop BLDC motor controller for the MDR product, using
+        encoder feedback for precise speed regulation. The interesting part is
+        the interface: instead of forcing customers to learn PWM, RS232, or
+        RS485, I designed a digital-pin control scheme — connect a pin to
+        positive logic, hit the speed listed on the chart. No protocol, no
+        firmware on the customer side. Full safety suite: overvoltage, overcurrent,
+        overtemperature, reverse voltage, and isolated inputs.
+      </p>
+      <div class="tags">
+        <span class="tag">BLDC Control</span><span class="tag">Encoder Feedback</span>
+        <span class="tag">PCB Design</span><span class="tag">Safety Circuits</span>
+        <span class="tag">Industrial</span>
+      </div>
+    </div>
+    <div class="project-imgs single">
+      <figure><img src="images/bldc-controller.jpg" alt="DriveCard BLDC controller PCB" loading="lazy"><figcaption>DriveCard-Propel+ — production unit</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 09 All-in-One Motherboard -->
+  <article class="project">
+    <div class="project-text">
+      <div class="project-num">09 / Hardware</div>
+      <h3 class="project-title">All-in-One Robotics Motherboard</h3>
+      <div class="project-meta">
+        <span>Robot Sumo · Robot Soccer</span>
+        <span>Integrated platform</span>
+      </div>
+      <p class="project-desc">
+        A single PCB that collapses a competition robot's electronics into one
+        board: battery, BMS, motor driver, MCU, and comms. Paired with a remote
+        I designed alongside it that uses encrypted communication so each robot
+        only responds to its paired controller — important when six teams are
+        running at once on the same band and a stray frame from another remote
+        would otherwise be catastrophic.
+      </p>
+      <div class="tags">
+        <span class="tag">PCB Design</span><span class="tag">BMS</span>
+        <span class="tag">Motor Driver</span><span class="tag">RF Comms</span>
+        <span class="tag">Encryption</span>
+      </div>
+    </div>
+    <div class="project-imgs triple">
+      <figure class="img-a"><img src="images/motherboard-1.jpg" alt="All-in-one motherboard with battery cells" loading="lazy"><figcaption>Integrated battery + electronics</figcaption></figure>
+      <figure><img src="images/motherboard-2.jpg" alt="Motherboard alternate angle" loading="lazy"><figcaption>Layout detail</figcaption></figure>
+      <figure><img src="images/motherboard-3.jpg" alt="Paired remote controller" loading="lazy"><figcaption>Paired encrypted remote</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 10 High-Power Motor Controller -->
+  <article class="project reverse">
+    <div class="project-text">
+      <div class="project-num">10 / Hardware</div>
+      <h3 class="project-title">High-Power Brushed DC Motor Controller</h3>
+      <div class="project-meta">
+        <span>Custom PCB</span>
+        <span>MOSFET-based</span>
+      </div>
+      <p class="project-desc">
+        A high-current motor controller for brushed DC motors — MOSFETs handle
+        speed control and dedicated relays handle braking. The whole board is
+        designed around heat: thermal mass for the MOSFET bank, active cooling,
+        and protection layers (overcurrent, overvoltage, thermal cutoff) so the
+        board fails safe under sustained heavy load.
+      </p>
+      <div class="tags">
+        <span class="tag">MOSFETs</span><span class="tag">High Current</span>
+        <span class="tag">Thermal Design</span><span class="tag">PCB</span>
+      </div>
+    </div>
+    <div class="project-imgs triple">
+      <figure class="img-a"><img src="images/highpower-1.jpg" alt="High-power motor controller top view" loading="lazy"><figcaption>MOSFET bank + heatsink</figcaption></figure>
+      <figure><img src="images/highpower-2.jpg" alt="High-power controller close-up" loading="lazy"><figcaption>Active cooling detail</figcaption></figure>
+      <figure><img src="images/highpower-3.jpg" alt="Controller mounted on chassis" loading="lazy"><figcaption>Deployed on test platform</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 11 Wire Cutting Machine -->
+  <article class="project">
+    <div class="project-text">
+      <div class="project-num">11 / Industrial</div>
+      <h3 class="project-title">Automatic Wire Cutting Machine</h3>
+      <div class="project-meta">
+        <span>ATmega-based controller</span>
+        <span>Industrial automation</span>
+      </div>
+      <p class="project-desc">
+        An automated wire processor: feed in a roll, set length and quantity
+        on the panel, and the machine spits out exact-length cuts. A custom
+        ATmega control board orchestrates stepper-driven feeding, solenoid
+        cutting, and an LED panel for operator feedback. Designed for the
+        repetitive, time-killing prep work that bottlenecks small electronics
+        and harness shops.
+      </p>
+      <div class="tags">
+        <span class="tag">ATmega</span><span class="tag">Stepper Motors</span>
+        <span class="tag">Solenoids</span><span class="tag">Embedded UI</span>
+      </div>
+    </div>
+    <div class="project-imgs single">
+      <figure><img src="images/wirecut.jpg" alt="Wire cutting machine" loading="lazy"><figcaption>Production unit on bench</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 12 Milk Dairy Display -->
+  <article class="project reverse">
+    <div class="project-text">
+      <div class="project-num">12 / Industrial</div>
+      <h3 class="project-title">Milk Dairy Display System</h3>
+      <div class="project-meta">
+        <span>RS232 multi-machine</span>
+        <span>Deployed in dairies</span>
+      </div>
+      <p class="project-desc">
+        Many dairies have separate machines for fat percentage, SNF, and
+        volume — each on its own little display, none talking to each other.
+        I built a consolidator that pulls all three over RS232, computes price
+        against the day's rate, and shows everything on one seven-segment
+        panel. Less ledger work, fewer errors, faster transactions at the
+        collection point.
+      </p>
+      <div class="tags">
+        <span class="tag">RS232</span><span class="tag">Multi-device</span>
+        <span class="tag">Seven-segment</span><span class="tag">Field deployed</span>
+      </div>
+    </div>
+    <div class="project-imgs single">
+      <figure><img src="images/milkdairy.jpg" alt="Milk dairy display unit" loading="lazy"><figcaption>Live readout in a collection center</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 13 Stair Climbing Robot -->
+  <article class="project">
+    <div class="project-text">
+      <div class="project-num">13 / Mechanical</div>
+      <h3 class="project-title">Stair Climbing Robot</h3>
+      <div class="project-meta">
+        <span>Mechanical prototype</span>
+        <span>Articulated wheel-arm</span>
+      </div>
+      <p class="project-desc">
+        A mechanical prototype exploring stair traversal with articulated
+        wheel arms — a hybrid between a tracked climber and a wheeled rover.
+        Each leg pivots independently to keep contact across step transitions,
+        letting the chassis climb without losing drive.
+      </p>
+      <div class="tags">
+        <span class="tag">Mechanical Design</span><span class="tag">Locomotion</span>
+        <span class="tag">Prototype</span>
+      </div>
+    </div>
+    <div class="project-imgs single">
+      <figure><img src="images/stairclimb.jpg" alt="Stair climbing robot prototype" loading="lazy"><figcaption>Articulated leg geometry</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 14 Self-Balancing Robot -->
+  <article class="project reverse">
+    <div class="project-text">
+      <div class="project-num">14 / Controls</div>
+      <h3 class="project-title">Self-Balancing Robot</h3>
+      <div class="project-meta">
+        <span>IMU · Stepper motors</span>
+        <span>Real-time control</span>
+      </div>
+      <p class="project-desc">
+        A two-wheeled self-balancer using stepper motors instead of the usual
+        DC + encoder pair — steppers gave deterministic position control,
+        which simplified the controller. IMU data feeds a custom control loop
+        that holds the chassis upright through real-time micro-corrections.
+        Cleanly demonstrates dynamic stabilization end-to-end.
+      </p>
+      <div class="tags">
+        <span class="tag">IMU</span><span class="tag">Stepper Motors</span>
+        <span class="tag">PID Control</span><span class="tag">Real-time</span>
+      </div>
+    </div>
+    <div class="project-imgs single">
+      <figure><img src="images/selfbalance.jpg" alt="Self-balancing robot" loading="lazy"><figcaption>Two-wheel stepper-driven balancer</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 15 FPV Drone -->
+  <article class="project">
+    <div class="project-text">
+      <div class="project-num">15 / Competition</div>
+      <h3 class="project-title">FPV Drone — IIT Bombay Competition</h3>
+      <div class="project-meta">
+        <span>IIT Bombay Drone Competition</span>
+        <span>Payload delivery</span>
+      </div>
+      <p class="project-desc">
+        An FPV drone built from scratch for the IIT Bombay competition. The
+        task was an obstacle course with payload delivery: a bottom-mounted
+        FPV camera streamed live video to a monitor while a teammate scanned
+        QR codes off the feed with a phone to identify the correct drop site.
+        Tight loop, no margin — out of 76 teams, we placed 5th.
+      </p>
+      <div class="project-stats">
+        <div class="pstat">
+          <span class="num">5th</span>
+          <span class="label">of 76 teams</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">FPV</span><span class="tag">Drone Design</span>
+        <span class="tag">Payload</span><span class="tag">Live Telemetry</span>
+      </div>
+    </div>
+    <div class="project-imgs single">
+      <figure><img src="images/drone.jpg" alt="FPV competition drone" loading="lazy"><figcaption>Competition airframe</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 16 Hand Sanitizer Machine -->
+  <article class="project reverse">
+    <div class="project-text">
+      <div class="project-num">16 / Entrepreneurship</div>
+      <h3 class="project-title">Automated Hand Sanitizer Machine</h3>
+      <div class="project-meta">
+        <span>COVID-19 response</span>
+        <span>Small business · Self-launched</span>
+      </div>
+      <p class="project-desc">
+        Designed and manufactured a contactless hand sanitizer dispenser during
+        the early pandemic, then stood up a small business to actually sell it.
+        Units went into government offices, hospitals, and schools across the
+        region. Over 100 sold — a side of engineering work I rarely see in
+        student portfolios: not just designing it, but the supply, the contracts,
+        and the deliveries.
+      </p>
+      <div class="project-stats">
+        <div class="pstat">
+          <span class="num">100+</span>
+          <span class="label">Units sold</span>
+        </div>
+        <div class="pstat">
+          <span class="num">Gov · Health · Edu</span>
+          <span class="label">Deployment sectors</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">Product Design</span><span class="tag">Entrepreneurship</span>
+        <span class="tag">Mass Production</span><span class="tag">Sales</span>
+      </div>
+    </div>
+    <div class="project-imgs triple">
+      <figure class="img-a"><img src="images/sanitizer-1.jpg" alt="Touchless sanitizer unit" loading="lazy"><figcaption>Touchless dispenser unit</figcaption></figure>
+      <figure><img src="images/sanitizer-2.jpg" alt="AutoSanitize India branded unit" loading="lazy"><figcaption>AutoSanitize India branding</figcaption></figure>
+      <figure><img src="images/sanitizer-3.jpg" alt="Sanitizer being used in the field" loading="lazy"><figcaption>Deployed in the field</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 17 Onion Harvester -->
+  <article class="project">
+    <div class="project-text">
+      <div class="project-num">17 / Agritech</div>
+      <h3 class="project-title">Self-Propelled Onion Harvester</h3>
+      <div class="project-meta">
+        <span>Team project · Electronics lead</span>
+        <span>IC engine · Hydraulics</span>
+      </div>
+      <p class="project-desc">
+        On a team that built a self-propelled IC-engine onion harvester, I
+        owned the electronics: a closed-loop control system regulating the
+        depth of the digging mechanism. A linear potentiometer measured
+        depth, a solenoid valve drove the hydraulic cylinder, and the controller
+        held the target depth across uneven field conditions. A load cell in
+        the holding area logged harvest quantity in real time.
+      </p>
+      <div class="tags">
+        <span class="tag">Hydraulics</span><span class="tag">Closed-loop Control</span>
+        <span class="tag">Load Cell</span><span class="tag">Agritech</span>
+      </div>
+    </div>
+    <div class="project-imgs single">
+      <figure><img src="images/harvester.jpg" alt="Self-propelled onion harvester" loading="lazy"><figcaption>Self-propelled harvester in field test</figcaption></figure>
+    </div>
+  </article>
+
+</main>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div>
+    <div class="eyebrow" style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 1rem;">/ About</div>
+    <h3>Engineering across the stack — mechanical to firmware to autonomy.</h3>
+  </div>
+  <div>
+    <p>
+      My work sits at the seam between hardware and software. Most projects
+      here started as a mechanical idea, became a custom PCB, then grew the
+      firmware and software needed to make them actually useful. I prefer
+      this end-to-end mode — it's the only way to know why something fails.
+    </p>
+    <p>
+      Currently working on robotics and SLAM systems at Northeastern University.
+      Previously co-founded a conveyor-systems company in India where I shipped
+      production hardware to industrial customers.
+    </p>
+
+    <div class="skills">
+      <div class="skill-group">
+        <h4>Robotics & SW</h4>
+        <ul>
+          <li>ROS / ROS2</li>
+          <li>SLAM (RTAB-Map, visual)</li>
+          <li>Sensor fusion</li>
+          <li>Computer vision</li>
+          <li>C / C++ / Python</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Hardware</h4>
+        <ul>
+          <li>PCB design (Altium, KiCad)</li>
+          <li>BLDC / brushed DC control</li>
+          <li>Power electronics</li>
+          <li>BMS design</li>
+          <li>RF / encrypted comms</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Mechanical</h4>
+        <ul>
+          <li>SolidWorks / Fusion 360</li>
+          <li>3D printing (FDM, SLA)</li>
+          <li>CNC fabrication</li>
+          <li>Gearbox design</li>
+          <li>DFM / DFA</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4>Embedded</h4>
+        <ul>
+          <li>ESP32 / STM32 / ATmega</li>
+          <li>CAN / RS232 / RS485</li>
+          <li>Real-time control</li>
+          <li>Encoder / IMU integration</li>
+          <li>Closed-loop systems</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="inner">
+    <h3>Let's build something <em>that moves.</em></h3>
+    <div class="contact-grid">
+      <div>
+        <span class="label">Email</span>
+        <a href="mailto:your.email@example.com">your.email@example.com</a>
+      </div>
+      <div>
+        <span class="label">LinkedIn</span>
+        <a href="#">linkedin.com/in/yourhandle</a>
+      </div>
+      <div>
+        <span class="label">GitHub</span>
+        <a href="#">github.com/yourhandle</a>
+      </div>
+      <div>
+        <span class="label">Location</span>
+        <span>Boston, MA</span>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>© 2026 — Portfolio Vol. 01</span>
+      <span>Set in Fraunces &amp; Inter Tight</span>
+      <span>Hosted on GitHub Pages</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal projects on scroll
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+  );
+  document.querySelectorAll('.project').forEach((el) => observer.observe(el));
+</script>
+
+</body>
+</html>
