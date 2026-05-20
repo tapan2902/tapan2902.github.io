@@ -493,7 +493,7 @@
   <div>
     <div class="hero-meta fade-in">
       <span>Portfolio / Vol. 01</span>
-      <span>16 Projects</span>
+      <span>19 Projects</span>
       <span>2019 — 2026</span>
     </div>
 
@@ -532,7 +532,7 @@
 </header>
 
 <div class="section-head" id="work">
-  <div class="eyebrow">Selected work · 01—18</div>
+  <div class="eyebrow">Selected work · 01—19</div>
   <h2>Projects, in order of depth.</h2>
 </div>
 
@@ -581,10 +581,52 @@
     </div>
   </article>
 
-  <!-- 02 Tunnel SLAM -->
+  <!-- 02 Maze-Solving Robot -->
   <article class="project">
     <div class="project-text">
-      <div class="project-num">02 / Research</div>
+      <div class="project-num">02 / Controls</div>
+      <h3 class="project-title">Maze-Solving Robot: PID, LQR, MPC &amp; SMC</h3>
+      <div class="project-meta">
+        <span>Northeastern University</span>
+        <span>CS 5180 · MATLAB</span>
+        <span>Unicycle Robot · PRM Planning</span>
+      </div>
+      <p class="project-desc">
+        Implemented and benchmarked four control strategies — PID, LQR, MPC, and
+        Sliding Mode Control — on a unicycle-model mobile robot navigating 2D mazes
+        from 15×15 to 45×45 grids. PRM generated collision-free reference paths;
+        each controller then followed them while tracking error, control steps, and
+        execution time were recorded across all maze sizes. LQR won on efficiency:
+        fewest control steps, linear time scaling, best overall accuracy. MPC
+        excelled at tight turns but at 2.5× the compute cost. The result: algorithm
+        complexity does not predict performance — tuning and reward structure do.
+      </p>
+      <div class="project-stats">
+        <div class="pstat">
+          <span class="num">3×</span>
+          <span class="label">Fewer control steps vs PID/SMC (LQR)</span>
+        </div>
+        <div class="pstat">
+          <span class="num">5.8<small>m</small></span>
+          <span class="label">Best mean tracking error (LQR)</span>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">LQR</span><span class="tag">MPC</span>
+        <span class="tag">PID</span><span class="tag">Sliding Mode Control</span>
+        <span class="tag">PRM</span><span class="tag">MATLAB</span>
+        <a href="https://github.com/tapan2902/Maze-Solving-Robot/tree/main" class="tag" style="color:var(--accent);border-color:var(--accent);text-decoration:none;" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="project-imgs single">
+      <figure><img src="images/maze_solving_robot_project.png" alt="Maze-solving robot controller comparison" loading="lazy"><figcaption>Controller benchmark — 7 maze sizes</figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 03 Tunnel SLAM -->
+  <article class="project reverse">
+    <div class="project-text">
+      <div class="project-num">03 / Research</div>
       <h3 class="project-title">Underground Tunnel 3D Mapping</h3>
       <div class="project-meta">
         <span>Northeastern University</span>
@@ -622,10 +664,10 @@
     </div>
   </article>
 
-  <!-- 02 ROS2 SLAM Robot -->
-  <article class="project reverse">
+  <!-- 04 ROS2 SLAM Robot -->
+  <article class="project">
     <div class="project-text">
-      <div class="project-num">03 / Research</div>
+      <div class="project-num">04 / Research</div>
       <h3 class="project-title">ROS2 SLAM Testing Platform</h3>
       <div class="project-meta">
         <span>Personal project</span>
@@ -651,10 +693,10 @@
     </div>
   </article>
 
-  <!-- 03 Combat Robot -->
-  <article class="project">
+  <!-- 05 Combat Robot -->
+  <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">04 / Competition</div>
+      <div class="project-num">05 / Competition</div>
       <h3 class="project-title">Plastic Antweight Combat Robot</h3>
       <div class="project-meta">
         <span>NU Robotics</span>
@@ -689,10 +731,10 @@
     </div>
   </article>
 
-  <!-- 04 ABU ROBOCON -->
-  <article class="project reverse">
+  <!-- 06 ABU ROBOCON -->
+  <article class="project">
     <div class="project-text">
-      <div class="project-num">05 / Team lead</div>
+      <div class="project-num">06 / Team lead</div>
       <h3 class="project-title">ABU ROBOCON</h3>
       <div class="project-meta">
         <span>Rajarshi Shahu College of Engineering</span>
@@ -728,10 +770,10 @@
     </div>
   </article>
 
-  <!-- 05 IoT Vehicle Tracking -->
-  <article class="project">
+  <!-- 07 IoT Vehicle Tracking -->
+  <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">06 / IoT</div>
+      <div class="project-num">07 / IoT</div>
       <h3 class="project-title">IoT Vehicle Tracking System</h3>
       <div class="project-meta">
         <span>Rajarshi Shahu College</span>
@@ -762,10 +804,10 @@
     </div>
   </article>
 
-  <!-- 06 Motor Driven Roller -->
-  <article class="project reverse">
+  <!-- 08 Motor Driven Roller -->
+  <article class="project">
     <div class="project-text">
-      <div class="project-num">07 / Startup</div>
+      <div class="project-num">08 / Startup</div>
       <h3 class="project-title">Motor Driven Roller <span style="color: var(--ink-faint); font-size: 0.7em;">(MDR)</span></h3>
       <div class="project-meta">
         <span>RollNDrive Pvt Ltd · Co-founder</span>
@@ -800,10 +842,10 @@
     </div>
   </article>
 
-  <!-- 07 Mecanum Sorter -->
-  <article class="project">
+  <!-- 09 Mecanum Sorter -->
+  <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">08 / Industrial</div>
+      <div class="project-num">09 / Industrial</div>
       <h3 class="project-title">Mecanum Wheel Parcel Sorter</h3>
       <div class="project-meta">
         <span>RollNDrive</span>
@@ -837,10 +879,10 @@
     </div>
   </article>
 
-  <!-- 08 BLDC Motor Controller -->
-  <article class="project reverse">
+  <!-- 10 BLDC Motor Controller -->
+  <article class="project">
     <div class="project-text">
-      <div class="project-num">09 / Hardware</div>
+      <div class="project-num">10 / Hardware</div>
       <h3 class="project-title">Closed-Loop BLDC Motor Controller</h3>
       <div class="project-meta">
         <span>RollNDrive · Custom PCB</span>
@@ -866,10 +908,10 @@
     </div>
   </article>
 
-  <!-- 09 All-in-One Motherboard -->
-  <article class="project">
+  <!-- 11 All-in-One Motherboard -->
+  <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">10 / Hardware</div>
+      <div class="project-num">11 / Hardware</div>
       <h3 class="project-title">All-in-One Robotics Motherboard</h3>
       <div class="project-meta">
         <span>Robot Sumo · Robot Soccer</span>
@@ -896,10 +938,10 @@
     </div>
   </article>
 
-  <!-- 10 High-Power Motor Controller -->
-  <article class="project reverse">
+  <!-- 12 High-Power Motor Controller -->
+  <article class="project">
     <div class="project-text">
-      <div class="project-num">11 / Hardware</div>
+      <div class="project-num">12 / Hardware</div>
       <h3 class="project-title">High-Power Brushed DC Motor Controller</h3>
       <div class="project-meta">
         <span>Custom PCB</span>
@@ -924,10 +966,10 @@
     </div>
   </article>
 
-  <!-- 11 Wire Cutting Machine -->
-  <article class="project">
+  <!-- 13 Wire Cutting Machine -->
+  <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">12 / Industrial</div>
+      <div class="project-num">13 / Industrial</div>
       <h3 class="project-title">Automatic Wire Cutting Machine</h3>
       <div class="project-meta">
         <span>ATmega-based controller</span>
@@ -951,10 +993,10 @@
     </div>
   </article>
 
-  <!-- 12 Milk Dairy Display -->
-  <article class="project reverse">
+  <!-- 14 Milk Dairy Display -->
+  <article class="project">
     <div class="project-text">
-      <div class="project-num">13 / Industrial</div>
+      <div class="project-num">14 / Industrial</div>
       <h3 class="project-title">Milk Dairy Display System</h3>
       <div class="project-meta">
         <span>RS232 multi-machine</span>
@@ -978,10 +1020,10 @@
     </div>
   </article>
 
-  <!-- 13 Stair Climbing Robot -->
-  <article class="project">
+  <!-- 15 Stair Climbing Robot -->
+  <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">14 / Mechanical</div>
+      <div class="project-num">15 / Mechanical</div>
       <h3 class="project-title">Stair Climbing Robot</h3>
       <div class="project-meta">
         <span>Mechanical prototype</span>
@@ -1003,10 +1045,10 @@
     </div>
   </article>
 
-  <!-- 14 Self-Balancing Robot -->
-  <article class="project reverse">
+  <!-- 16 Self-Balancing Robot -->
+  <article class="project">
     <div class="project-text">
-      <div class="project-num">15 / Controls</div>
+      <div class="project-num">16 / Controls</div>
       <h3 class="project-title">Self-Balancing Robot</h3>
       <div class="project-meta">
         <span>IMU · Stepper motors</span>
@@ -1029,10 +1071,10 @@
     </div>
   </article>
 
-  <!-- 15 FPV Drone -->
-  <article class="project">
+  <!-- 17 FPV Drone -->
+  <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">16 / Competition</div>
+      <div class="project-num">17 / Competition</div>
       <h3 class="project-title">FPV Drone — IIT Bombay Competition</h3>
       <div class="project-meta">
         <span>IIT Bombay Drone Competition</span>
@@ -1061,10 +1103,10 @@
     </div>
   </article>
 
-  <!-- 16 Hand Sanitizer Machine -->
-  <article class="project reverse">
+  <!-- 18 Hand Sanitizer Machine -->
+  <article class="project">
     <div class="project-text">
-      <div class="project-num">17 / Entrepreneurship</div>
+      <div class="project-num">18 / Entrepreneurship</div>
       <h3 class="project-title">Automated Hand Sanitizer Machine</h3>
       <div class="project-meta">
         <span>COVID-19 response</span>
@@ -1100,10 +1142,10 @@
     </div>
   </article>
 
-  <!-- 17 Onion Harvester -->
-  <article class="project">
+  <!-- 19 Onion Harvester -->
+  <article class="project reverse">
     <div class="project-text">
-      <div class="project-num">18 / Agritech</div>
+      <div class="project-num">19 / Agritech</div>
       <h3 class="project-title">Self-Propelled Onion Harvester</h3>
       <div class="project-meta">
         <span>Team project · Electronics lead</span>
